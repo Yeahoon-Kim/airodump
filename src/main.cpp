@@ -12,10 +12,17 @@
 #include "radiotap.hpp"
 
 void interruptHandler(const int signo) {
+    switch(signo) {
+        case SIGINT:
+            std::cout << "Keyboard Interrupt\n";
+            break;
+        case SIGTERM:
+            std::cout << "Terminate signal\n";
+            break;
+        default: break;
+    }
 
-
-
-
+    isEnd.store(true);
 }
 
 using namespace std;
@@ -102,8 +109,9 @@ bool airodump(const char* dev, pcap_t* pcap) {
     int res, flag;
 
     std::thread printer = std::thread(printScreen, DB);
+    printer.detach();
 
-    while( true ) {
+    while(not isEnd.load()) {
         res = pcap_next_ex(pcap, &header, &packet);
 
         if (res == 0) continue;
