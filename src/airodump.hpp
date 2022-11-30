@@ -19,4 +19,4 @@ std::tuple<uint32_t, std::string> parsingTags(const char* payload, const int pay
 
 void printScreen(const std::unordered_map<Mac, std::pair<uint32_t, std::tuple<uint32_t, std::string>>>& m);
 
-bool airodump(const char* dev, pcap_t* pcap);
+bool airodump(pcap_t* pcap);

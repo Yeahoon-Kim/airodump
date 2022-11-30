@@ -66,9 +66,9 @@ typedef struct beacon_frame {
     } subtype:4;
     uint8_t flags;
     uint16_t duration;
-    Mac destMAC;
-    Mac srcMAC;
-    Mac BSSID;
+    uint8_t destMAC[6];
+    uint8_t srcMAC[6];
+    uint8_t BSSID[6];
     uint16_t fragNum:4, seqNum:12;
 } __attribute__((__packed__));
 

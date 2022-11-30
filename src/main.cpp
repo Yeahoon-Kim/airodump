@@ -47,7 +47,7 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
-    airodump(dev, pcap);
+    airodump(pcap);
 
     pcap_close(pcap);
 }

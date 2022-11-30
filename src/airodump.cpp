@@ -61,7 +61,7 @@ void printScreen(const std::unordered_map<Mac, std::pair<uint32_t, std::tuple<ui
     }
 }
 
-bool airodump(const char* dev, pcap_t* pcap) {
+bool airodump(pcap_t* pcap) {
     PFixedManageFrame pFixedManageFrame;
     PRadiotapHdr pRadioTapHeader;
     PBeacon pBeaconFrame;
