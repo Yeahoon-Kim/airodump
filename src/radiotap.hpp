@@ -10,7 +10,7 @@ struct ieee80211_radiotap_header {
     uint32_t it_present;    // (first) present word;
 } __attribute__((__packed__));
 
-typedef struct beacon_frame {
+struct beacon_frame {
     uint8_t version:2;
     enum {
         MANAGEMENT_FRAMES       = 0,    // 802.11 Management Frames

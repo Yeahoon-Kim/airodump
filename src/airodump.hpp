@@ -13,7 +13,7 @@
 #include "radiotap.hpp"
 
 extern std::mutex mutexer;
-extern std::atomic<bool> isEnd(false); 
+extern std::atomic<bool> isEnd; 
 
 std::tuple<uint32_t, std::string> parsingTags(const char* payload, const int payloadLength);
 

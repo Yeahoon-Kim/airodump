@@ -14,7 +14,7 @@ std::tuple<uint32_t, std::string> parsingTags(const char* payload, const int pay
     while( currentIdx < payloadLength ) {
         tagLength = reader[1];
 
-        switch(reader[0]) {
+        switch((uint8_t)reader[0]) {
             case 1:     // Supported Rates
                 break;
             case 3:     // DS Parameter set
@@ -61,13 +61,13 @@ void printScreen(const std::unordered_map<Mac, std::pair<uint32_t, std::tuple<ui
     }
 }
 
-bool airodump(pcap_t* pcap) {
+void airodump(pcap_t* pcap) {
     PFixedManageFrame pFixedManageFrame;
     PRadiotapHdr pRadioTapHeader;
     PBeacon pBeaconFrame;
 
     struct pcap_pkthdr* header;
-    u_char* packet;
+    const u_char* packet;
 
     uint16_t radioHdrLength;
     uint32_t packetLength, tagLength;
@@ -77,7 +77,7 @@ bool airodump(pcap_t* pcap) {
     std::tuple<uint32_t, std::string> contents;
     std::unordered_map<Mac, std::pair<uint32_t, std::tuple<uint32_t, std::string>>> DB;
     
-    int res, flag;
+    int res;
 
     std::thread printer = std::thread(printScreen, DB);
     printer.detach();
