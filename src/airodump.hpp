@@ -1,7 +1,6 @@
 #pragma once
 
 #include <iostream>
-#include <csignal>
 #include <unordered_map>
 #include <iomanip>
 #include <thread>

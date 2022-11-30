@@ -1,5 +1,7 @@
 #include "airodump.hpp"
 
+#include <csignal>
+
 void interruptHandler(const int signo) {
     switch(signo) {
         case SIGINT:
