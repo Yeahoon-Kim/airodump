@@ -1,6 +1,6 @@
 CXX = g++
 CXXFLAGS = -W -Wall -O2
-OBJECTS = ./ip.o ./mac.o ./arphdr.o ./ethhdr.o ./arp-spoof.o ./main.o
+OBJECTS = ./mac.o ./airodump.o ./main.o
 TARGET = ../bin/arp-spoof
 LIBS = -lpcap -pthread
 
@@ -10,10 +10,7 @@ $(TARGET): $(OBJECTS)
 	$(CXX) $(CXXFLAGS) -o $(@) $(^) $(LIBS)
 
 main.o: ./main.cpp
-arp-spoof.o: ./arp-spoof.hpp ./arp-spoof.cpp
-arphdr.o:  ./arphdr.hpp ./arphdr.cpp
-ethhdr.o: ./ethhdr.hpp ./ethhdr.cpp
-ip.o: ./ip.hpp ./ip.cpp
+arp-airodump.o: ./airodump.cpp
 mac.o : ./mac.hpp ./mac.cpp
 
 clean:
