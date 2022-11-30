@@ -1,7 +1,7 @@
 CXX = g++
 CXXFLAGS = -W -Wall -O2
 OBJECTS = ./mac.o ./airodump.o ./main.o
-TARGET = ../bin/arp-spoof
+TARGET = ../bin/airodump
 LIBS = -lpcap -pthread
 
 all: $(TARGET)
