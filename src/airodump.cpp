@@ -61,6 +61,17 @@ void printScreen(const std::unordered_map<Mac, std::pair<uint32_t, std::tuple<ui
     }
 }
 
+#ifdef DEBUG
+void printDump(const u_char* packet, const int length) {
+    for(int i = 0; i < length; i++) {
+        std::cout << packet[i] << ' ';
+        if(i % 16 == 15) std::cout << '\n';
+    }
+
+    std::cout << '\n';
+}
+#endif
+
 void airodump(pcap_t* pcap) {
     PFixedManageFrame pFixedManageFrame;
     PRadiotapHdr pRadioTapHeader;
@@ -75,7 +86,7 @@ void airodump(pcap_t* pcap) {
     
     char* taggedParameter;
     std::tuple<uint32_t, std::string> contents;
-    std::unordered_map<Mac, std::pair<uint32_t, std::tuple<uint32_t, std::string>>> DB;
+    std::unordered_map<Mac, std::pair<uint32_t, std::tuple<uint32_t, std::string>>>  DB;
     
     int res;
 
@@ -95,7 +106,11 @@ void airodump(pcap_t* pcap) {
 		}
 
         // Check total packet length
-        packetLength = header->len;
+        packetLength = header->caplen;
+
+#ifdef DEBUG
+        printDump(packet, packetLength);
+#endif
 
         // Cast radiotap header
         pRadioTapHeader = (PRadiotapHdr)packet;
